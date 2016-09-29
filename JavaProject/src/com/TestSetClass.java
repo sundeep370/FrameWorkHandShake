@@ -3,7 +3,7 @@ package com;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SetClass {
+public class TestSetClass {
 
 	
 	public static void main(String args[]){

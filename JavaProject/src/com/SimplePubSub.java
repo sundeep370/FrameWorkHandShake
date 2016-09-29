@@ -27,7 +27,7 @@ import com.ibm.mq.jms.MQTopicSubscriber;
  *
  * Does not make use of JNDI for ConnectionFactory and/or Destination definitions.
  *
- * @author saket
+ * @author Zenith
  */
 public class SimplePubSub {
   /**
@@ -44,7 +44,7 @@ public class SimplePubSub {
       cf.setPort(1414);
       cf.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
       cf.setQueueManager("QM_thinkpad");
-      cf.setChannel("SYSTEM.DEF.SVRCONN");
+      cf.setChannel("SYSTEM.ZENITH.CHANEL");
 
       MQTopicConnection connection = (MQTopicConnection) cf.createTopicConnection();
       MQTopicSession session = (MQTopicSession) connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);

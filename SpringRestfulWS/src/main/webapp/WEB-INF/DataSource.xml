@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+<aop:aspectj-autoproxy />
+
+
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location"> <value>database.properties</value> </property> 
+		</bean> -->
+
+	<bean id="dataSource"	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/sys" />
+		<property name="username" value="root" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property> 
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>Employee.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+	<bean id="employeeDao" class="org.arpit.java2blog.dao.impl.EmployeeDaoImpl">
+	 <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	
+	<bean id="employeeJDBCDao" class="org.arpit.java2blog.springjdbc.EmployeeJDBCDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+	
+	<bean id="employeeSpringJDBCDao" class="org.arpit.java2blog.springjdbc.EmployeeSpringJDBCDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <bean id ="empService" class = "org.arpit.java2blog.service.EmployeeServiceImpl"></bean>
+ 
+ 	<bean id = "loggingAspect" class ="org.arpit.java2blog.service.aspect.LoggingAspect"></bean>
+</beans>

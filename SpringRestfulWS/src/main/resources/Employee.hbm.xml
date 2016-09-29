@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.arpit.java2blog.model.Employee" table="employee"
+		catalog="sys">
+		<id name="id" type="java.lang.Long">
+			<column name="emp_id" />
+			<generator class="assigned"></generator>
+		</id>
+		<property name="fristName" type="string">
+			<column name="frist_name" length="20" not-null="false" unique="true" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="last_name" length="20" not-null="false" unique="true" />
+		</property>
+		<property name="userId" type="string">
+			<column name="user_id" length="20" not-null="false" unique="true" />
+		</property>
+		<property name="emailId" type="string">
+			<column name="email_id" length="50" not-null="false" unique="true" />
+		</property>
+		<property name="salary" type="integer">
+			<column name="salary" length="50" not-null="false" unique="false" />
+		</property>
+		<property name="department" type="string">
+			<column name="department" length="50" not-null="false" unique="false" />
+		</property>
+		<property name="address" type="string">
+			<column name="address" length="100" not-null="false" unique="false" />
+		</property>
+		<set name="certificates" cascade="all" inverse="true">
+            <key column="emp_id" not-null="true" />
+            <one-to-many class="org.arpit.java2blog.model.Certificate"/>
+        </set>
+	</class>
+
+
+
+	<class name="org.arpit.java2blog.model.Certificate" table="certificate"
+		catalog="sys">
+		<id name="id" type="int" column="certificate_id">
+			<generator class="native" />
+		</id>
+		<property name="certificate" type="string">
+			<column name="certificate_name" length="30" not-null="false"
+				unique="false" />
+		</property>
+		<many-to-one name="employee" class="org.arpit.java2blog.model.Employee" fetch="select"
+            column="emp_id" not-null="true">
+        </many-to-one>
+
+	</class>
+</hibernate-mapping>

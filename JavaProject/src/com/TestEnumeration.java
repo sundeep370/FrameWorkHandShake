@@ -24,4 +24,7 @@ public class TestEnumeration {
 		}
 		System.out.println(vector);
 	}
+	
+	
+	
 }

@@ -10,9 +10,9 @@ import java.util.HashMap;
  * @author Zenith
  *
  */
-public class TestStringClass {
+public  class TestStringClass {
 
-	public static TestStringClass testStringClass;
+	public static  TestStringClass testStringClass;
 	
 	public static synchronized  TestStringClass getInstance(){
 		if(null == testStringClass){

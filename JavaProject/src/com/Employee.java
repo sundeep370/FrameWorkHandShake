@@ -6,6 +6,13 @@ public class Employee {
 	public String lastName;
 	public int emp_id;
 	
+	public static Employee _emp = null;
+	public static Employee getInstance(){
+		if(null == _emp){
+			_emp = new Employee();
+		}
+		return _emp;
+	}
 	
 	public String getFirstName() {
 		return firstName;

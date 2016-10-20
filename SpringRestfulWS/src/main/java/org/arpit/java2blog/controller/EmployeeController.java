@@ -38,6 +38,8 @@ public class EmployeeController {
 	private HashMap<String, String> credentials = null;
 
 	private HttpSession session = null;
+	
+	
 	// Hibernate
 	@RequestMapping(value = "/createEmployee/{firstName}/{lastName}", method = RequestMethod.POST, headers = "Accept=text/plain")
 	public void createEmployee(HttpServletRequest request, @RequestHeader Map<String, String> headers,

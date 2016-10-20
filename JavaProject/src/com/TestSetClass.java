@@ -11,32 +11,46 @@ public class TestSetClass {
 
 	public static void main(String args[]) {
 
-		Employee emp1 = new Employee();
+		Set<Employee> eSet = new HashSet<>();
+		
+		Employee emp1 = Employee.getInstance();
 		emp1.setEmp_id(1);
 		emp1.setFirstName("Om");
 		emp1.setLastName("Prakesh");
 
-		Employee emp2 = new Employee();
-		emp2.setEmp_id(1);
-		emp2.setFirstName("Om");
-		emp2.setLastName("Prakesh");
-
-		Set<Employee> eSet = new HashSet<>();
 		eSet.add(emp1);
+		System.out.println("Set - HashCode:"+eSet.hashCode());
+		Employee emp2 = Employee.getInstance();
+		emp2.setEmp_id(2);
+		emp2.setFirstName("Sundeep");
+		emp2.setLastName("Seethalam");
+		
 		eSet.add(emp2);
+		System.out.println("Set - HashCode:"+eSet.hashCode());
+		Employee emp3 = Employee.getInstance();
+		emp3.setEmp_id(3);
+		emp3.setFirstName("Om");
+		emp3.setLastName("Prakesh");
 
-		System.out.println(eSet.size());
+		eSet.add(emp3);
+		
+		Employee.getInstance().setEmp_id(4);
+		Employee.getInstance().setFirstName("Sundeep");
+		Employee.getInstance().setLastName("Seethalam");
+		
+		System.out.println("Set - HashCode:"+eSet.hashCode());
+		System.out.println("Set - size:"+eSet.size());
 		for (Employee e : eSet) {
-			System.out.println(e.hashCode());
+			System.out.println("HashCode:"+e.hashCode());
 		}
-		System.out.println(eSet.hashCode());
+		
 
-		System.out.println();
-		TestSetClass t = new TestSetClass();
+		System.out.println("END");
+		/*TestSetClass t = new TestSetClass();
 		t.getTreeSet();
 		t.getHashSet();
 		t.getLinkedHashSet();
-		t.getSortedSet();
+		t.getSortedSet();*/
 	}
 
 	public void getTreeSet() {
